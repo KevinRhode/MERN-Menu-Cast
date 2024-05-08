@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <Router>
-        <dvi>
+        <div>
         <Nav/>
         <Routes>
           <Route path='/' element={<App />}>
@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
-        </dvi>
+        </div>
         
       </Router>
     </AuthProvider>
