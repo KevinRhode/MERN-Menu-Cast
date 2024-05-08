@@ -2,13 +2,19 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useAuth } from '../utils/AuthContext'; 
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+ 
+
 
 
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error }] = useMutation(LOGIN);  
+  const [login, { error }] = useMutation(LOGIN);  //apollo call
+  const {login:tkLogin} = useAuth(); //login to update user state for app
+  const navigate = useNavigate(); // Initialize useNavigate
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +23,9 @@ function Login(props) {
         variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
-      Auth.login(token);
+      tkLogin(token);
+      navigate('/');
+      
       
     } catch (e) {
       console.log(e);
