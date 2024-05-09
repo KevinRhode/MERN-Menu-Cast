@@ -14,7 +14,7 @@ const Account = () => {
     <>
      
       {user ? (<>
-        <h2>Hello </h2>
+        <h2>Hello {user.data.firstName}</h2>
             
               <button className='button is-primary' onClick={logout} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer' }}>Logout</button>
             

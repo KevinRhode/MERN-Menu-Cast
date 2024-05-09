@@ -14,9 +14,9 @@ const Nav = () => {
       <li className='field'><Link className='button is-link' to="/contact">Contact</Link></li>
       {user ? (<>
             <li className='field'><Link className='button is-link' to="/profile">Profile</Link></li>
-            <li className='field'>
+            {/* <li className='field'>
               <button onClick={logout} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer' }}>Logout</button>
-            </li>
+            </li> */}
           </>) : (<>
           </>)}
     </ul>
