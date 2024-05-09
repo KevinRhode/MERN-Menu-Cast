@@ -11,11 +11,11 @@ import NotFound from './components/NotFound/index.jsx'
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
 import Signup from './pages/Signup.jsx'
+import Account from './pages/Account.jsx'
 import Nav from './components/Nav/index.jsx'
 import { AuthProvider } from './utils/AuthContext';
 import ProtectedRoute from './utils/ProtectedRoute.jsx'
 
-import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -30,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Home />
               </ProtectedRoute>
             } />
+            <Route path='profile' element={<ProtectedRoute><Account/></ProtectedRoute>}/>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup/>}/>
             <Route path='*' element={<NotFound />} />

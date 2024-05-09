@@ -38,14 +38,13 @@ function Signup(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
-
-      <h2>Signup</h2>
+    <div >
+      
+      <h2 className='title'>Signup</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="inputs">
-          <label htmlFor="firstName">First Name:</label>
-          <input
+        <div className="field">
+          <label className='label' htmlFor="firstName">First Name:</label>
+          <input className='input'
             placeholder="First"
             name="firstName"
             type="firstName"
@@ -54,9 +53,9 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="inputs">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
+        <div className="field">
+          <label className='label' htmlFor="lastName">Last Name:</label>
+          <input className='input'
             placeholder="Last"
             name="lastName"
             type="lastName"
@@ -65,9 +64,9 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="inputs">
-          <label htmlFor="email">Email:</label>
-          <input
+        <div className="field">
+          <label className='label' htmlFor="email">Email:</label>
+          <input className='input'
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -76,9 +75,9 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="inputs">
-          <label htmlFor="pwd">Password:</label>
-          <input
+        <div className="field">
+          <label className='label' htmlFor="pwd">Password:</label>
+          <input className='input'
             placeholder="******"
             name="password"
             type="password"
@@ -88,7 +87,8 @@ function Signup(props) {
           />
         </div>
         <div className="inputs-btn">
-          <button type="submit">Submit</button>
+          <button className='button is-primary' type="submit">Submit</button>
+          <Link className='button is-link' to="/login">← Go to Login</Link>
         </div>
       </form>
     </div>

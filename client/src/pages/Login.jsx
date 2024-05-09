@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
-import { useAuth } from '../utils/AuthContext'; 
+import { useAuth } from '../utils/AuthContext';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
- 
+
 
 
 
@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate from react
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);  //apollo call
-  const {login:tkLogin} = useAuth(); //login to update user state for app
+  const { login: tkLogin } = useAuth(); //login to update user state for app
   const navigate = useNavigate(); // Initialize useNavigate
 
 
@@ -25,8 +25,8 @@ function Login(props) {
       const token = mutationResponse.data.login.token;
       tkLogin(token);
       navigate('/');
-      
-      
+
+
     } catch (e) {
       console.log(e);
     }
@@ -41,14 +41,15 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+    <div >
+      
 
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="inputs">
-          <label htmlFor="email">Email address:</label>
-          <input
+      <h2 className='title'>Login</h2>
+      <section className='section'>
+      <form className='container' onSubmit={handleFormSubmit}>
+        <div className="field">
+          <label className='label' htmlFor="email">Email address:</label>
+          <input className='input'
             placeholder="youremail@provider.com"
             name="email"
             type="email"
@@ -57,9 +58,10 @@ function Login(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="inputs">
-          <label htmlFor="pwd">Password:</label>
+        <div className="field">
+          <label className='label' htmlFor="pwd">Password:</label>
           <input
+          className='input'
             placeholder="******"
             name="password"
             type="password"
@@ -73,10 +75,12 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+        <div className='buttons' >
+          <button className='button is-primary' type="submit">Submit</button>
+          <Link className='button is-link' to="/signup">← Go to Signup</Link>
         </div>
       </form>
+      </section>
     </div>
   );
 }

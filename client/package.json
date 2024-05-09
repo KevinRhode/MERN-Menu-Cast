@@ -7,6 +7,8 @@
     "dev": "vite",
     "start": "vite --host",
     "build": "vite build",
+    "build-bulma": "sass --load-path=node_modules my-bulma-project.scss my-bulma-project.css",
+    "start-bulma": "npm run build-bulma -- --watch",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -19,7 +21,8 @@
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.23.0",
+    "sass": "^1.77.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
