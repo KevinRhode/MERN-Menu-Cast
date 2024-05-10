@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../utils/AuthContext';
 
 const Nav = () => {
-    const {user, logout} = useAuth();
+    const {user} = useAuth();
 
   return (
     <nav >
