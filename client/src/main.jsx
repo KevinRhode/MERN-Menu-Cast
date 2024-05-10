@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <Router>
-        <div>
+        <div className='section'>
         <Nav/>
         <Routes>
           <Route path='/' element={<App />}>
@@ -37,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Route>
         </Routes>
         </div>
+               
         
       </Router>
     </AuthProvider>

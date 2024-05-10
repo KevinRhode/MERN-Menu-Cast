@@ -11,16 +11,16 @@ const Account = () => {
     const {user, logout} = useAuth();
 
   return (
-    <>
+    <div className='section'>
      
-      {user ? (<>
-        <h2>Hello {user.data.firstName}</h2>
+      {user ? (<div className='container'>
+        <h2 className='title'>Hello {user.data.firstName}</h2>
+        
+        <button className='button is-primary' onClick={logout} >Logout</button>
             
-              <button className='button is-primary' onClick={logout} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer' }}>Logout</button>
-            
-          </>) : (<>
+          </div>) : (<>
           </>)}
-    </>
+    </div>
 
        
   

@@ -38,10 +38,10 @@ function Signup(props) {
   };
 
   return (
-    <div >
+    <div >      
       
+      <form onSubmit={handleFormSubmit} className='section'>
       <h2 className='title'>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
         <div className="field">
           <label className='label' htmlFor="firstName">First Name:</label>
           <input className='input'
@@ -86,7 +86,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="inputs-btn">
+        <div className="buttons">
           <button className='button is-primary' type="submit">Submit</button>
           <Link className='button is-link' to="/login">← Go to Login</Link>
         </div>

@@ -44,8 +44,9 @@ function Login(props) {
     <div >
       
 
-      <h2 className='title'>Login</h2>
+      
       <section className='section'>
+      <h2 className='title'>Login</h2>
       <form className='container' onSubmit={handleFormSubmit}>
         <div className="field">
           <label className='label' htmlFor="email">Email address:</label>
