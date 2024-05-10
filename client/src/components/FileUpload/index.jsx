@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../utils/AuthContext';
 import { ADD_SLIDE } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
+import { useStateContext } from '../../utils/GlobalState';
 import axios from 'axios'; // Assuming you're using axios for HTTP requests
 
 const FileUpload = () => {
     
+    const { state, dispatch } = useStateContext();
     const [addSlide, {error}] = useMutation(ADD_SLIDE);
     const [previewSrc, setPreviewSrc] = useState('');
     const [message, setMessage] = useState('');
@@ -45,6 +47,7 @@ const FileUpload = () => {
         
           
           const gqlResponse = await addSlide({variables:{filename,extname}});
+          dispatch({type: 'ADD_SLIDE',payload:gqlResponse.data.addSlide});
           
           //(gqlResponse.data.addSlide); add to global state
     

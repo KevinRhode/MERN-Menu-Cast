@@ -74,9 +74,18 @@ const resolvers = {
     },
     deleteSlide: async (parent, { slideId }, context) => {
       if (context.user) {
-        const deletedSlide = await Slide.deleteOne({ _id: slideId });
+        try {
+          const deletedSlide = await Slide.findByIdAndDelete({ _id: slideId });
+        if (!deletedSlide) {
+          throw new Error("No slide found with this ID.");
+        }
         return deletedSlide;
+        } catch (error) {
+          throw new Error("Failed to delete the slide.");
+        }
+        
       }
+      
     },
 
     addSlideshow: async (parent, args, context) => {
