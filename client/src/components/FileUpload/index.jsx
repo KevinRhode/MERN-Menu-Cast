@@ -2,6 +2,7 @@ import React , {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../utils/AuthContext';
 import { ADD_SLIDE } from '../../utils/mutations';
+import { GET_ALL_SLIDES } from '../../utils/queries';
 import { useMutation } from '@apollo/client';
 import { useStateContext } from '../../utils/GlobalState';
 import axios from 'axios'; // Assuming you're using axios for HTTP requests
@@ -9,7 +10,7 @@ import axios from 'axios'; // Assuming you're using axios for HTTP requests
 const FileUpload = () => {
     
     const { state, dispatch } = useStateContext();
-    const [addSlide, {error}] = useMutation(ADD_SLIDE);
+    const [addSlide, {error}] = useMutation(ADD_SLIDE,{refetchQueries: [{query:GET_ALL_SLIDES}]});
     const [previewSrc, setPreviewSrc] = useState('');
     const [message, setMessage] = useState('');
     const [file, setFile] = useState(null);

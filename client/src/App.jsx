@@ -11,6 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom'
 import { StateProvider } from './utils/GlobalState';
+import DataLoader from './utils/DataLoader';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -32,6 +33,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
+
 function App() {
  
   return (
@@ -40,8 +43,8 @@ function App() {
         <StateProvider>
         <ApolloProvider client={client}>
           
-            <Outlet />
-          
+           <Outlet />
+                     
         </ApolloProvider>
         </StateProvider>
       </div>

@@ -15,11 +15,14 @@ import Account from './pages/Account.jsx'
 import Nav from './components/Nav/index.jsx'
 import { AuthProvider } from './utils/AuthContext';
 import ProtectedRoute from './utils/ProtectedRoute.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import DataLoader from './utils/DataLoader.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
+      
       <Router>
         <div className='section'>
         <Nav/>
@@ -27,10 +30,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/' element={<App />}>
             <Route index element={
               <ProtectedRoute>
-                <Home />
+                <DataLoader>
+                <Dashboard />
+                </DataLoader>
               </ProtectedRoute>
             } />
             <Route path='profile' element={<ProtectedRoute><Account/></ProtectedRoute>}/>
+            <Route path='home' element={<ProtectedRoute><Home/></ProtectedRoute>} />
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup/>}/>
             <Route path='*' element={<NotFound />} />

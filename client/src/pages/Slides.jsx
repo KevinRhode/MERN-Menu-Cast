@@ -9,16 +9,9 @@ import { useStateContext } from '../utils/GlobalState';
 import axios from 'axios'; // Assuming you're using axios for HTTP requests
 
 const Slides = () => {
-    // const { loading:loadingSlides, error:errorSlides, data:dataSlides } = useQuery(GET_ALL_SLIDES);  
-    // const {state, dispatch} = useStateContext();
 
-    // if (loadingSlides) return <p>Loading Slides...</p>;
-    
-    const { loading, data } = useQuery(GET_ALL_SLIDES);
-    const [deleteSlide, { loading:delLoading, error }] = useMutation(DELETE_SLIDE,{refetchQueries: [{query:GET_ALL_SLIDES}]});
+    const [deleteSlide, { loading:delLoading, error }] = useMutation(DELETE_SLIDE);
     const { state, dispatch } = useStateContext();
-
-
 
     const handleDeleteSlide = async (slideId) => {
       try {
@@ -28,9 +21,7 @@ const Slides = () => {
         return gqlResponse.data;
       } catch (error) {
         return error;
-      }
-      
-      
+      }           
 
   };
 //id is filename.extname of the file on the server/public/uploads
@@ -38,14 +29,8 @@ const Slides = () => {
     const response = await axios.delete(`/uploads/${id}`);
     console.log(response);
   }
+   
 
-    useEffect(() => {
-        if (data && !loading) {
-            dispatch({ type: 'SET_SLIDES', payload: data.getAllslides });
-        }
-    }, [data, loading, dispatch]);
-
-    if (loading) return <p>Loading Slides...</p>;
     if (!state.Slides) return <p>No slides available</p>;
     return (
         <div className="">            
