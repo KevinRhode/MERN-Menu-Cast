@@ -17,6 +17,7 @@ import { AuthProvider } from './utils/AuthContext';
 import ProtectedRoute from './utils/ProtectedRoute.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import DataLoader from './utils/DataLoader.jsx'
+import CreateSlide from './pages/CreateSlide.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -36,7 +37,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               </ProtectedRoute>
             } />
             <Route path='profile' element={<ProtectedRoute><Account/></ProtectedRoute>}/>
-            <Route path='home' element={<ProtectedRoute><Home/></ProtectedRoute>} />
+            <Route path='home' element={<ProtectedRoute><DataLoader><Home/></DataLoader></ProtectedRoute>} />
+            <Route path='createSlides' element={<ProtectedRoute><CreateSlide/></ProtectedRoute>}/>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup/>}/>
             <Route path='*' element={<NotFound />} />

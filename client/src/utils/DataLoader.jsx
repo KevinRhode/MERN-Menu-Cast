@@ -4,7 +4,7 @@ import { GET_ALL_SLIDES } from './queries';
 import { useStateContext } from './GlobalState';
 
 const DataLoader = ({ children }) => {
-    const { loading, error, data } = useQuery(GET_ALL_SLIDES,{notifyOnNetworkStatusChange:true});
+    const { loading, error, data } = useQuery(GET_ALL_SLIDES);
     const { dispatch } = useStateContext();
 
     useEffect(() => {

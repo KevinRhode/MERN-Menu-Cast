@@ -3,21 +3,28 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import { useAuth } from '../utils/AuthContext';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import { Link } from 'react-router-dom';
-import { GET_ALL_SLIDES } from '../utils/queries';
 import { DELETE_SLIDE } from '../utils/mutations';
 import { useStateContext } from '../utils/GlobalState';
 import axios from 'axios'; // Assuming you're using axios for HTTP requests
+import ConfirmationModal from '../components/ConfirmationModal'
 
 const Slides = () => {
 
     const [deleteSlide, { loading:delLoading, error }] = useMutation(DELETE_SLIDE);
     const { state, dispatch } = useStateContext();
-
-    const handleDeleteSlide = async (slideId) => {
+    const [showModal, setShowModal] = useState(false);
+    const [slideId, setSlideIdSecelted] = useState('');
+    const promptDelete = (selectedId) => {
+      setSlideIdSecelted(selectedId);
+      setShowModal(true);
+    }
+    const handleDeleteSlide = async () => {
       try {
         const gqlResponse = await deleteSlide({variables:{slideId}});
         deleteFile((gqlResponse.data.deleteSlide.filename +'.'+gqlResponse.data.deleteSlide.extname));
         dispatch({ type: 'REMOVE_SLIDE', payload: slideId });
+        setSlideIdSecelted('');
+        setShowModal(false);
         return gqlResponse.data;
       } catch (error) {
         return error;
@@ -41,10 +48,28 @@ const Slides = () => {
           <div key={slide._id}>
            <img src={`/uploads/${slide.filename}.${slide.extname}`} alt={slide.filename} />
             <p>{slide.filename}</p>
-            <button className='button' onClick={() => handleDeleteSlide(slide._id)}>Delete Slide</button>
+            <button className='button is-danger ' onClick={() => promptDelete(slide._id)} >Delete Slide</button> 
+            {/*  */}
           </div>
         ))
       )}
+     <div id="modal-js-example" className={`modal ${showModal ? 'is-active' : ''}`}>
+        <div className="modal-background" onClick={() => {setShowModal(false); setSlideIdSecelted('');}}></div>
+        <div className="modal-content section">
+         
+          <div className="box">
+          <h2 className='title'>Confirmation</h2>            
+            <p className='field'>Are you sure you want to delete this slide?</p>
+            <div className='buttons'>
+            <button className='button is-success' onClick={() => handleDeleteSlide()}>Confirm Delete</button>
+            <button className='button is-success' onClick={() => {setShowModal(false); setSlideIdSecelted('');}}>Cancel</button>
+            </div>
+            
+          </div>
+        </div>
+        <button className="modal-close is-large" aria-label="close" onClick={() => {setShowModal(false); setSlideIdSecelted('');}}></button>
+      </div>
+      
     </div>
     );
 

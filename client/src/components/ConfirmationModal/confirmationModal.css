@@ -1,0 +1,19 @@
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 98vh;
+    overflow-y: auto;
+
+}
+.modal-content > button {
+   text-align: center;
+   margin: 0.25rem 0;
+   /* align-self: center;    */
+}
+pre {
+    white-space: pre-wrap;      /* CSS3 */
+    word-wrap: break-word;      /* Internet Explorer 5.5+ */
+    overflow-wrap: break-word;  /* Modern browsers */
+    /* text-wrap: wrap; */
+    /* word-wrap: normal; */
+  }

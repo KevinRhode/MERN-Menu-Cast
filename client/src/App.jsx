@@ -41,10 +41,8 @@ function App() {
           
       <div>
         <StateProvider>
-        <ApolloProvider client={client}>
-          
-           <Outlet />
-                     
+        <ApolloProvider client={client}>          
+          <Outlet />       
         </ApolloProvider>
         </StateProvider>
       </div>
