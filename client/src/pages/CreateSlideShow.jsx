@@ -54,7 +54,7 @@ function CreateSlideShow(){
     } catch (error) {
       setFormState({errorMessage:error});
     }
-   console.log(state);
+   
   }
 
     return (
@@ -62,26 +62,19 @@ function CreateSlideShow(){
           <h2 className="title">Create Slide Show</h2>
           <div className='container'>
           <label className='label' htmlFor="slideshowName">Slideshow Name: </label>
-      {formState ? (<input
-        className='input'
-        placeholder=""
-        name="slideshowName"
-        type="String"
-        id="slideshowName"
-        onChange={handleChange}
-        value={formState.slideshowName}
-      />) : (<input
-        className='input'
-        placeholder=""
-        name="slideshowName"
-        type="String"
-        id="slideshowName"
-        onChange={handleChange}
-      />)}
-      {formState.errorMessage ? (<></>):(<p>{formState.errorMessage}</p>)}
+     <input
+          className='input'
+          placeholder=""
+          name="slideshowName"
+          type="text"
+          id="slideshowName"
+          onChange={handleChange}
+          value={formState.slideshowName}
+        />
+      {formState.errorMessage && <p>{formState.errorMessage.message}</p>}
        <button className='button is-primary' onClick={handleCreateSlideShow} >Create Slide Show</button>
 </div>
-      <Slides onCardClick={handleCardClick} listSelected={formState.selectedSlides}/>
+      <Slides onCardClick={handleCardClick}/>
 
      
         </div>

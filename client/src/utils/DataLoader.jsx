@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_SLIDES } from './queries';
+import { GET_ALL_ENDPOINTS, GET_ALL_SLIDES, GET_ALL_SLIDESHOWS } from './queries';
 import { useStateContext } from './GlobalState';
 
 const DataLoader = ({ children }) => {
-    const { loading, error, data } = useQuery(GET_ALL_SLIDES);
+    const { loading:loadingSlides, error: errSlides, data: dataSlides } = useQuery(GET_ALL_SLIDES);
+    const { loading:loadingSlideShows, error: errSlideShows, data: dataSlideShows } = useQuery(GET_ALL_SLIDESHOWS);
+    const { loading:loadingEndpoints, error: errEndpoints, data: dataEndpoints } = useQuery(GET_ALL_ENDPOINTS);
     const { dispatch } = useStateContext();
 
     useEffect(() => {
-        if (data && !loading && !error) {
-            dispatch({ type: 'SET_SLIDES', payload: data.getAllslides });
+        if (dataSlides && !loadingSlides && !errSlides) {
+            dispatch({ type: 'SET_SLIDES', payload: dataSlides.getAllslides });
         }
-    }, [data, loading, error, dispatch]);
+    }, [dataSlides, loadingSlides, errSlides, dispatch]);
+
+    useEffect(() => {
+        if (dataSlideShows && !loadingSlideShows && !errSlideShows) {
+            dispatch({ type: 'SET_SLIDESHOWS', payload: dataSlideShows.getAllslides });
+        }
+    }, [dataSlideShows, loadingSlideShows, errSlideShows, dispatch]);
+
 
     // useEffect(() => {
     //     if (data && !loading && !error) {
@@ -20,8 +29,9 @@ const DataLoader = ({ children }) => {
     // }, [data, loading, error, dispatch]);
 
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error! {error.message}</p>;
+    if (loadingSlides || loadingSlideShows) return <p>Loading...</p>;
+    if (errSlides) return <p>Error! {errSlides.message}</p>
+    if (errSlideShows) return <p>Error! {errSlideShows.message}</p>;
 
     return <>{children}</>;
 };

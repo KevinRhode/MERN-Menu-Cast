@@ -29,13 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Nav/>
         <Routes>
           <Route path='/' element={<App />}>
-            <Route index element={
-              <ProtectedRoute>
-                <DataLoader>
-                <Dashboard />
-                </DataLoader>
-              </ProtectedRoute>
-            } />
+            <Route index element={<ProtectedRoute><DataLoader><Dashboard /></DataLoader></ProtectedRoute>} />
             <Route path='profile' element={<ProtectedRoute><Account/></ProtectedRoute>}/>
             <Route path='home' element={<ProtectedRoute><DataLoader><Home/></DataLoader></ProtectedRoute>} />
             <Route path='createSlides' element={<ProtectedRoute><DataLoader><CreateSlide/></DataLoader></ProtectedRoute>}/>
