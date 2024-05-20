@@ -7,7 +7,7 @@ import Slides from './Slides';
 function CreateSlide(){
     return (
         <div className="section">
-          <h2 className="title">CreateSlide</h2>
+          <h2 className="title">Create Slide</h2>
           <div>
             <FileUpload/>
           </div>

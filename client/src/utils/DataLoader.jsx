@@ -13,6 +13,13 @@ const DataLoader = ({ children }) => {
         }
     }, [data, loading, error, dispatch]);
 
+    // useEffect(() => {
+    //     if (data && !loading && !error) {
+    //         dispatch({ type: 'SET_SLIDES', payload: data.getAllslides });
+    //     }
+    // }, [data, loading, error, dispatch]);
+
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error! {error.message}</p>;
 

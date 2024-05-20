@@ -6,7 +6,9 @@ import { reducer } from './reducers';
 
 // Initial state
 const initialState = {
-    Slides:[]
+    Slides:[],
+    SlideShow:[],
+    SelectedSlides:[]
 };
 
 // Create context

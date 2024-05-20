@@ -7,8 +7,9 @@ import { DELETE_SLIDE } from '../utils/mutations';
 import { useStateContext } from '../utils/GlobalState';
 import axios from 'axios'; // Assuming you're using axios for HTTP requests
 import ConfirmationModal from '../components/ConfirmationModal'
+import './slides.css';
 
-const Slides = () => {
+const Slides = (props) => {
 
     const [deleteSlide, { loading:delLoading, error }] = useMutation(DELETE_SLIDE);
     const { state, dispatch } = useStateContext();
@@ -40,12 +41,16 @@ const Slides = () => {
 
     if (!state.Slides) return <p>No slides available</p>;
     return (
-        <div className="">            
+        <div className="card-container section">            
       {state.Slides.length === 0 ? (
         <p>No slides available</p>
       ) : (
-        state.Slides.map((slide) => (
-          <div key={slide._id}>
+        state.Slides.map((slide) => (          
+          <div
+          //prove the onclick if prop is given otherwise on onClick for the card
+           {...(props.onCardClick ? {onClick:()=> props.onCardClick(slide._id)}:{} )}
+           className={`card ${state.SelectedSlides.includes(slide._id) ? 'selected' : ''}`} 
+           key={slide._id}>
            <img src={`/uploads/${slide.filename}.${slide.extname}`} alt={slide.filename} />
             <p>{slide.filename}</p>
             <button className='button is-danger ' onClick={() => promptDelete(slide._id)} >Delete Slide</button> 

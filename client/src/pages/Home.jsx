@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 import FileUpload from '../components/FileUpload';
 import Slides from './Slides';
+import CreateSlideShow from './CreateSlideShow';
 
 function Home(){
     return (
         <div className="section">
           <h2 className="title">Home</h2>
-          <div>
-            <FileUpload/>
-          </div>
-          <div>
-            <Slides/>
-          </div>
+          <CreateSlideShow/>
         </div>
     )
 }

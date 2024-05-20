@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             } />
             <Route path='profile' element={<ProtectedRoute><Account/></ProtectedRoute>}/>
             <Route path='home' element={<ProtectedRoute><DataLoader><Home/></DataLoader></ProtectedRoute>} />
-            <Route path='createSlides' element={<ProtectedRoute><CreateSlide/></ProtectedRoute>}/>
+            <Route path='createSlides' element={<ProtectedRoute><DataLoader><CreateSlide/></DataLoader></ProtectedRoute>}/>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup/>}/>
             <Route path='*' element={<NotFound />} />
