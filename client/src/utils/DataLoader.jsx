@@ -17,7 +17,7 @@ const DataLoader = ({ children }) => {
 
     useEffect(() => {
         if (dataSlideShows && !loadingSlideShows && !errSlideShows) {
-            dispatch({ type: 'SET_SLIDESHOWS', payload: dataSlideShows.getAllslides });
+            dispatch({ type: 'SET_SLIDESHOWS', payload: dataSlideShows.getAllslideshow });
         }
     }, [dataSlideShows, loadingSlideShows, errSlideShows, dispatch]);
 

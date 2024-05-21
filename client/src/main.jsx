@@ -18,29 +18,34 @@ import ProtectedRoute from './utils/ProtectedRoute.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import DataLoader from './utils/DataLoader.jsx'
 import CreateSlide from './pages/CreateSlide.jsx'
+import Endpoint from './components/Endpoint/index.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       
-      <Router>
-        <div className='section'>
-        <Nav/>
+      <Router>      
+       
         <Routes>
           <Route path='/' element={<App />}>
-            <Route index element={<ProtectedRoute><DataLoader><Dashboard /></DataLoader></ProtectedRoute>} />
-            <Route path='profile' element={<ProtectedRoute><Account/></ProtectedRoute>}/>
-            <Route path='home' element={<ProtectedRoute><DataLoader><Home/></DataLoader></ProtectedRoute>} />
-            <Route path='createSlides' element={<ProtectedRoute><DataLoader><CreateSlide/></DataLoader></ProtectedRoute>}/>
+            <Route index element={<ProtectedRoute><DataLoader><Nav/><Dashboard /></DataLoader></ProtectedRoute>} />
+            <Route path='profile' element={<ProtectedRoute><Nav/><Account/></ProtectedRoute>}/>
+            <Route path='home' element={<ProtectedRoute><DataLoader><Nav/><Home/></DataLoader></ProtectedRoute>} />
+            <Route path='createSlides' element={<ProtectedRoute><DataLoader><Nav/><CreateSlide/></DataLoader></ProtectedRoute>}/>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup/>}/>
-            <Route path='*' element={<NotFound />} />
+            <Route path='*' element={<NotFound/>} />
           </Route>
         </Routes>
-        </div>
+        
                
         
+      </Router>
+      <Router>
+        <Routes>
+          <Route path='/ss/:id' element={<Endpoint/>}/>
+        </Routes>
       </Router>
     </AuthProvider>
 
