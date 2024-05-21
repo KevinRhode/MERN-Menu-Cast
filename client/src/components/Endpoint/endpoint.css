@@ -1,0 +1,58 @@
+#root {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-grow: 1; /* will cause vertical images to grow when horz, formats fine so far*/
+  }
+  html {
+    
+    height: 100%;
+  }
+  /* Endpoint-specific CSS overrides */
+html.no-overflow-y {
+    overflow-y: unset !important; /* or set to your desired value */
+  }
+  
+  body {
+    height: 100%;
+    /* min-height: 100vh; */
+    display: flex;
+    margin: 0;
+  }
+
+.slideshow {
+    /* margin: 0 auto; */
+    overflow: hidden;
+    display: flex;
+    flex-grow: 1;
+  }
+  .slideshow img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Will make sure the image covers the slide without distortion */
+  }
+  .slideshowSlider {
+    flex-grow: 1;
+    white-space: nowrap;
+    transition: ease 2000ms;
+  }
+  .slideshow-container {
+    display: contents;
+  }
+  /* Slide */
+  .slide {
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Slide thumbnail */
+  /* .slide-thumbnail {
+    padding: 0.25rem 0;
+    max-width: 170px;
+  } */
+/*   
+  .slide-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  } */

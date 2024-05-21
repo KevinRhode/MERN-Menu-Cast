@@ -51,7 +51,9 @@ function CreateSlideShow(){
        //take the state of selectedSlides and create a new slideshow
     const createShow = await addSlideShow({variables:{slides:[...state.SelectedSlides],slideshowName:state.slideshowName}})
     dispatch({type: 'ADD_SLIDESHOW', payload: createShow.data.addSlideshow});
+    dispatch({type: 'SET_SELECTEDSLIDE', payload: ''})
     setFormState({errorMessage:''});
+
     //
     } catch (error) {
       setFormState({errorMessage:error.message});
@@ -67,7 +69,7 @@ function CreateSlideShow(){
             (<p>No Slideshows available</p>)
             :
             (state.SlideShow.map((slideshow)=>(
-            <div key={slideshow._id} className='slideshow'>
+            <div key={slideshow._id} className='slideshows'>
               <p>{slideshow.slideshowName}</p>
               <p>{slideshow.comment}</p>
             </div>

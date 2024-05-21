@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import App from './App.jsx'
+import ContentServer from './components/ContentServer/index.jsx'
 import NotFound from './components/NotFound/index.jsx'
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
@@ -18,7 +19,6 @@ import ProtectedRoute from './utils/ProtectedRoute.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import DataLoader from './utils/DataLoader.jsx'
 import CreateSlide from './pages/CreateSlide.jsx'
-import Endpoint from './components/Endpoint/index.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -28,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Router>      
        
         <Routes>
+          <Route path='/ss/:id' element={<ContentServer/>}/>
           <Route path='/' element={<App />}>
             <Route index element={<ProtectedRoute><DataLoader><Nav/><Dashboard /></DataLoader></ProtectedRoute>} />
             <Route path='profile' element={<ProtectedRoute><Nav/><Account/></ProtectedRoute>}/>
@@ -37,14 +38,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='signup' element={<Signup/>}/>
             <Route path='*' element={<NotFound/>} />
           </Route>
-        </Routes>
-        
-               
-        
-      </Router>
-      <Router>
-        <Routes>
-          <Route path='/ss/:id' element={<Endpoint/>}/>
         </Routes>
       </Router>
     </AuthProvider>
