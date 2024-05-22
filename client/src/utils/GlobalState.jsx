@@ -9,7 +9,9 @@ const initialState = {
     Slides:[],
     SlideShow:[],
     slideshowName:'',
-    SelectedSlides:[]
+    endpointName:'',
+    SelectedSlides:[],
+    SelectedSlideshows:[]
 };
 
 // Create context

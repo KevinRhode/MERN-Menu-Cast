@@ -46,10 +46,10 @@ const resolvers = {
 
     },
     getAllEndpoints: async (parent, args, context) => {
-      // if (context.user) {
+      if (context.user) {
       const endpoints = await Endpoint.find().populate({ path: 'slideshows', populate: { path: 'slides' } });
       return endpoints;
-      // }
+      }
     }
 
 
