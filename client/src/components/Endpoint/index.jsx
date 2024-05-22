@@ -8,8 +8,8 @@ import './endpoint.css'
 
 const Endpoint = () => {
   const {id} = useParams();
-  const { loading:loadingEndpoints, error: errEndpoints, data: dataEndpoints } = useQuery(GET_ALL_ENDPOINTS);
-  const { loading, error, data } = useQuery(GET_ENDPOINT,{variables:{getEndpointId:id},pollInterval: 60000,fetchPolicy:'cache-and-network', errorPolicy:'all'});
+  //const { loading:loadingEndpoints, error: errEndpoints, data: dataEndpoints } = useQuery(GET_ALL_ENDPOINTS);
+  const { loading, error, data } = useQuery(GET_ENDPOINT,{variables:{getEndpointId:id.toLowerCase()},pollInterval: 60000,fetchPolicy:'cache-and-network', errorPolicy:'all'});
   const delay = 10000;
 
   useEffect(() => {

@@ -38,14 +38,14 @@ function CreateEndpoint(){
       setFormState({ ...formState, errorMessage: 'Endpoint name is required' });
       return;
     }
-    if (state.selectedSlideshows.length === 0) {
+    if (state.SelectedSlideshows.length === 0) {
       setFormState({ ...formState, errorMessage: 'At least one slideshow must be selected' });
       return;
     }
 
     try {
        //take the state of selectedSlides and create a new slideshow
-    const createEndpoint = await addEndpoint({variables:{slideshows:[...state.SelectedSlideshows],deviceId: state.slideshowName}})
+    const createEndpoint = await addEndpoint({variables:{slideshows:[...state.SelectedSlideshows],deviceId: state.slideshowName.toLowerCase() }})
     dispatch({type: 'ADD_ENDPOINT', payload: createEndpoint.data.addSlideshow});
     dispatch({type: 'SET_SELECTEDSLIDESHOW', payload: ''})
     setFormState({errorMessage:''});
