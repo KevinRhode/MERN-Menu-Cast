@@ -11,6 +11,7 @@ function Dashboard(){
           <div className='buttons'>
             <Link className='button is-link' to="/home">Home</Link>
             <Link className='button is-link' to="/createSlides">Create Slides</Link>
+            <Link className='button is-link' to='/createSlideshows'>Create Slideshows</Link>
             <Link className='button is-link' to="/createEndpoints">Create Endpoint</Link>
           </div>          
         </div>

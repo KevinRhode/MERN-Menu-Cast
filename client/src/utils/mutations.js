@@ -120,3 +120,16 @@ mutation DeleteSlide($slideId: ID!) {
     extname
   }
 }`;
+
+export const DELETE_SLIDESHOW = gql`
+mutation deleteSlideshow($slideshowId: ID!) {
+  deleteSlideshow(slideshowId: $slideshowId) {
+    comments
+    slideshowName
+    _id
+    slides {
+      _id
+    }
+  }
+}
+`;

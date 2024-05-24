@@ -1,37 +1,39 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_ENDPOINTS, GET_ENDPOINT } from '../../utils/queries';
+import {  GET_ENDPOINT } from '../../utils/queries';
 import { useParams } from 'react-router-dom';
 // import './reset.css'
-import './endpoint.css'
+//import './endpoint.css'
 
 
 const Endpoint = () => {
   const {id} = useParams();
-  //const { loading:loadingEndpoints, error: errEndpoints, data: dataEndpoints } = useQuery(GET_ALL_ENDPOINTS);
   const { loading, error, data } = useQuery(GET_ENDPOINT,{variables:{getEndpointId:id.toLowerCase()},pollInterval: 60000,fetchPolicy:'cache-and-network', errorPolicy:'all'});
   const delay = 10000;
 
   useEffect(() => {
-    // Add the class to the html element when the component mounts
-    document.documentElement.classList.add('no-overflow-y');
+    
+    
+
+     // Create a link element
+     const link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.href = '/src/components/endpoint/endpoint.css';
+     link.id = 'dynamic-stylesheet';
+ 
+     // Append the link element to the head
+     document.head.appendChild(link);
+     // Add the class to the html element when the component mounts
+     document.documentElement.classList.add('no-overflow-y');
 
     // Remove the class from the html element when the component unmounts
     return () => {
       document.documentElement.classList.remove('no-overflow-y');
+      document.head.removeChild(link);
     };
   }, []);
   
-  const [show, setShow] = useState([]);
-  // if (!loading) {
-    // data.getEndpoint.slideshows.forEach(slideshow => {
-    //   slideshow.slides.forEach(slide => {
-    //     show.push(slide)
-    //   })
-    // });
-   
-  // }
- 
+  const [show, setShow] = useState([]); 
   const [index, setIndex] = useState(0);
   const timeoutRef = useRef(null);
 
