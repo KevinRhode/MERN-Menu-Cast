@@ -8,6 +8,7 @@ import { reducer } from './reducers';
 const initialState = {
     Slides:[],
     SlideShow:[],
+    Endpoints:[],
     slideshowName:'',
     endpointName:'',
     SelectedSlides:[],

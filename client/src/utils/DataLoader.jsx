@@ -22,11 +22,11 @@ const DataLoader = ({ children }) => {
     }, [dataSlideShows, loadingSlideShows, errSlideShows, dispatch]);
 
 
-    // useEffect(() => {
-    //     if (data && !loading && !error) {
-    //         dispatch({ type: 'SET_SLIDES', payload: data.getAllslides });
-    //     }
-    // }, [data, loading, error, dispatch]);
+    useEffect(() => {
+        if (dataEndpoints && !loadingEndpoints && !errEndpoints) {
+            dispatch({ type: 'SET_ENDPOINT', payload: dataEndpoints.getAllEndpoints });
+        }
+    }, [dataEndpoints, loadingEndpoints, errEndpoints, dispatch]);
 
 
     if (loadingSlides || loadingSlideShows) return <p>Loading...</p>;

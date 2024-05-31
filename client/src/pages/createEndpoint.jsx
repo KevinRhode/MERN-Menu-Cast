@@ -3,6 +3,7 @@ import { useStateContext } from '../utils/GlobalState';
 import { useMutation } from '@apollo/client';
 import { ADD_ENDPOINT } from '../utils/mutations';
 import './createEndpoint.css'
+import Endpoints from './Endpoints';
 
 function CreateEndpoint(){
 
@@ -45,7 +46,7 @@ function CreateEndpoint(){
 
     try {
        //take the state of selectedSlides and create a new slideshow
-    const createEndpoint = await addEndpoint({variables:{slideshows:[...state.SelectedSlideshows],deviceId: state.slideshowName.toLowerCase() }})
+    const createEndpoint = await addEndpoint({variables:{slideshows:[...state.SelectedSlideshows],deviceId: state.endpointName.toLowerCase() }})
     dispatch({type: 'ADD_ENDPOINT', payload: createEndpoint.data.addSlideshow});
     dispatch({type: 'SET_SELECTEDSLIDESHOW', payload: ''})
     setFormState({errorMessage:''});
@@ -85,7 +86,8 @@ function CreateEndpoint(){
        <button className='button is-primary' onClick={handleCreateEndpoint} >Create Endpoint</button>
 </div>
       {/* <Slideshow onCardClick={handleCardClick}/> */}
-
+          
+          <Endpoints/>
      
         </div>
     )
