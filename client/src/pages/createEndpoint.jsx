@@ -47,7 +47,7 @@ function CreateEndpoint(){
     try {
        //take the state of selectedSlides and create a new slideshow
     const createEndpoint = await addEndpoint({variables:{slideshows:[...state.SelectedSlideshows],deviceId: state.endpointName.toLowerCase() }})
-    dispatch({type: 'ADD_ENDPOINT', payload: createEndpoint.data.addSlideshow});
+    dispatch({type: 'ADD_ENDPOINT', payload: createEndpoint.data.addEndpoint});
     dispatch({type: 'SET_SELECTEDSLIDESHOW', payload: ''})
     setFormState({errorMessage:''});
 

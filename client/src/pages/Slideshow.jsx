@@ -12,9 +12,15 @@ function Slideshow(){
 
   const { state, dispatch } = useStateContext();
   const [formState, setFormState] = useState({errorMessage:''});
+  const [showModal, setShowModal] = useState(false);
+  const [slideshowId, setslideshowIdSelected] = useState('');
   const [addSlideShow, {error}] = useMutation(ADD_SLIDESHOW);
   const [deleteSlideshow, {error: errorDelete}] = useMutation(DELETE_SLIDESHOW);
 
+  const promptDelete = (selectedId) => {
+    setslideshowIdSelected(selectedId);
+    setShowModal(true);
+  }
   const handleChange = (event) => {    
     const { value } = event.target;
     dispatch({type:'SET_SLIDESHOWNAME', payload:value})
@@ -37,10 +43,11 @@ function Slideshow(){
     }
   
   };
-  const handleDelete = async (slideshowID) => {
+  const handleDelete = async () => {
 
-    deleteSlideshow({variables:{slideshowId:slideshowID}});
-    dispatch({type: 'REMOVE_SLIDESHOW', payload: slideshowID});
+    deleteSlideshow({variables:{slideshowId:slideshowId}});
+    dispatch({type: 'REMOVE_SLIDESHOW', payload: slideshowId});
+    setShowModal(false);
     return;
   };
   const handleCreateSlideShow = async () => {
@@ -79,7 +86,7 @@ function Slideshow(){
             <div key={slideshow._id} className='slideshows'>
               <p>{slideshow.slideshowName}</p>
               <p>{slideshow.comment}</p>
-              <button onClick={() => handleDelete(slideshow._id)} className='button is-danger'>Delete</button>
+              <button onClick={() => promptDelete(slideshow._id)} className='button is-danger'>Delete Slideshow</button>
             </div>
             )))}
           </div>
@@ -98,6 +105,23 @@ function Slideshow(){
 </div>
       <Slides onCardClick={handleCardClick}/>
 
+
+      <div id="modal-js-example" className={`modal ${showModal ? 'is-active' : ''}`}>
+        <div className="modal-background" onClick={() => {setShowModal(false); setslideshowIdSelected('');}}></div>
+        <div className="modal-content section">
+         
+          <div className="box">
+          <h2 className='title'>Confirmation</h2>            
+            <p className='field'>Are you sure you want to delete this slide?</p>
+            <div className='buttons'>
+            <button className='button is-success' onClick={() => handleDelete()}>Confirm Delete</button>
+            <button className='button is-success' onClick={() => {setShowModal(false); setslideshowIdSelected('');}}>Cancel</button>
+            </div>
+            
+          </div>
+        </div>
+        <button className="modal-close is-large" aria-label="close" onClick={() => {setShowModal(false); setslideshowIdSelected('');}}></button>
+      </div>
      
         </div>
     )

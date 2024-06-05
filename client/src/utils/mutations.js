@@ -95,6 +95,11 @@ mutation addEndpoint($slideshows: [ID]!, $deviceId: String!) {
     _id
     slideshows {
       _id
+      slides {
+        _id
+        filename
+        extname
+      }
     }
   }
 }
@@ -129,6 +134,23 @@ mutation deleteSlideshow($slideshowId: ID!) {
     _id
     slides {
       _id
+    }
+  }
+}
+`;
+
+export const DELETE_ENDPOINT = gql`
+mutation deleteEndpoint($endpointId: ID!) {
+  deleteEndpoint(endpointId: $endpointId) {
+    deviceId
+    _id
+    slideshows {
+      _id
+      slides {
+        _id
+        filename
+        extname
+      }
     }
   }
 }

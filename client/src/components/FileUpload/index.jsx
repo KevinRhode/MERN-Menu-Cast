@@ -30,6 +30,7 @@ const FileUpload = () => {
             alert('Please select an image file (jpeg or png).');
         }
     };
+    
 
     const onSubmit = async (e) => {
         e.preventDefault();
