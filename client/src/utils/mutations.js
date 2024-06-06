@@ -95,6 +95,7 @@ mutation addEndpoint($slideshows: [ID]!, $deviceId: String!) {
     _id
     slideshows {
       _id
+      slideshowName
       slides {
         _id
         filename
