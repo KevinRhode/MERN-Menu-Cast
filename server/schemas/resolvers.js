@@ -133,6 +133,21 @@ const resolvers = {
         return updatedEndpoint;
       }
     },
+    deleteEndpoint: async (parent, { endpointId }, context) => {
+      if (context.user) {
+        try {
+          const deletedEndpoint = await Endpoint.findByIdAndDelete({ _id: endpointId });
+        if (!deletedEndpoint) {
+          throw new Error("No slideshow found with this ID.");
+        }
+        return deletedEndpoint;
+        } catch (error) {
+          throw new Error("Failed to delete the slideshow.");
+        }
+        
+      }
+      
+    },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
