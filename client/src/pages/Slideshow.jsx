@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import { useAuth } from '../utils/AuthContext';
 
 import { useStateContext } from '../utils/GlobalState';
@@ -16,6 +16,8 @@ function Slideshow(){
   const [slideshowId, setslideshowIdSelected] = useState('');
   const [addSlideShow, {error}] = useMutation(ADD_SLIDESHOW);
   const [deleteSlideshow, {error: errorDelete}] = useMutation(DELETE_SLIDESHOW);
+  const navigate = useNavigate();
+
 
   const promptDelete = (selectedId) => {
     setslideshowIdSelected(selectedId);
@@ -74,7 +76,12 @@ function Slideshow(){
     }
    
   }
-
+///slideshow/:slideshowId
+  const handleViewEdit = (id) => {
+    navigate(`/slideshow/${id}`);
+  }
+  
+  
     return (
         <div className="">
           
@@ -87,6 +94,8 @@ function Slideshow(){
               <p>{slideshow.slideshowName}</p>
               <p>{slideshow.comment}</p>
               <button onClick={() => promptDelete(slideshow._id)} className='button is-danger'>Delete Slideshow</button>
+              <button onClick={() => handleViewEdit(slideshow._id)} className='button is-secondary'>View</button>
+              <button onClick={() => handleViewEdit(slideshow._id)} className='button is-secondary'>Edit</button>
             </div>
             )))}
           </div>

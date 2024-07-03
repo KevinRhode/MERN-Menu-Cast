@@ -21,6 +21,7 @@ import DataLoader from './utils/DataLoader.jsx'
 import CreateSlide from './pages/CreateSlide.jsx'
 import CreateEndpoint from './pages/createEndpoint.jsx'
 import CreateSlideshow from './pages/CreateSlideShow.jsx'
+import SlideshowViewUpdate from './pages/SlideshowViewUpdate.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='createSlides' element={<ProtectedRoute><DataLoader><Nav/><CreateSlide/></DataLoader></ProtectedRoute>}/>
             <Route path='createSlideshows' element={<ProtectedRoute><DataLoader><Nav/><CreateSlideshow/></DataLoader></ProtectedRoute>}/>
             <Route path='createEndpoints' element={<ProtectedRoute><DataLoader><Nav/><CreateEndpoint/></DataLoader></ProtectedRoute>}/>
+            <Route path='/slideshow/:slideshowId' element={<ProtectedRoute><DataLoader><Nav/><SlideshowViewUpdate /></DataLoader></ProtectedRoute>}/>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup/>}/>
             <Route path='*' element={<NotFound/>} />
