@@ -55,6 +55,7 @@ function Endpoints(){
                   </div>
                 ))}
                 <button className='button is-danger' onClick={()=>promptDelete(endpoint._id)}>Delete Endpoint</button>
+                <button className='button is-secondary' onClick={() => console.log('')}>Edit</button>
               </div>
             ))
           )}

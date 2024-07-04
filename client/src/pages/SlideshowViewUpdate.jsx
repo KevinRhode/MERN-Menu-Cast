@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
+
+import { useStateContext } from '../utils/GlobalState';
 import { useParams, useNavigate } from 'react-router-dom';
 import { UPDATE_SLIDESHOW, DELETE_SLIDESHOW } from '../utils/mutations';
 import { GET_SLIDESHOW } from '../utils/queries';
@@ -9,37 +11,61 @@ import Slides from './Slides';
 const SlideshowViewUpdate = () => {
   const { slideshowId } = useParams();
   const navigate = useNavigate();
-  const [formState, setFormState] = useState({ errorMessage: '' });
+  const [formState, setFormState] = useState({ errorMessage: '',slideshowName:'' });
   const [showModal, setShowModal] = useState(false);
-  const [selectedSlides, setSelectedSlides] = useState([]);
+  const { state, dispatch } = useStateContext();
   const { loading, error, data } = useQuery(GET_SLIDESHOW, { variables: { getSlideshowId:slideshowId } });
   const [updateSlideshow] = useMutation(UPDATE_SLIDESHOW);
   const [deleteSlideshow] = useMutation(DELETE_SLIDESHOW);
 
   useEffect(() => {
-    if (data && data.slideshow) {
-      setSelectedSlides(data.slideshow.slides);
+    if (data && data.getSlideshow) {
+      const mapIds = data.getSlideshow.slides.map(slide => slide._id);
+      dispatch({type:'SET_SELECTEDSLIDE', payload:mapIds});
+      setFormState({...formState, slideshowName:data.getSlideshow.slideshowName})
     }
-  }, [data]);
+  }, [data, dispatch ]);
 
+  useEffect(() => {
+    return () => {
+      dispatch({type:'SET_SELECTEDSLIDE', payload:[]})
+    };
+  },[]);
   const handleChange = (event) => {
     const { value } = event.target;
     setFormState({ ...formState, slideshowName: value });
   };
 
   const handleCardClick = (slideId) => {
-    const index = selectedSlides.indexOf(slideId);
+    const index = state.SelectedSlides.indexOf(slideId)
     if (index !== -1) {
-      setSelectedSlides(selectedSlides.filter(id => id !== slideId));
+      // if the string is found, remove it
+      dispatch({ type: 'REMOVE_SELECTEDSLIDE', payload: slideId });
     } else {
-      setSelectedSlides([...selectedSlides, slideId]);
+      // else the string is added to the list
+      dispatch({ type: 'ADD_SELECTEDSLIDE', payload: slideId });      
     }
+  
   };
+  const updateSlideshowInEndpoints = (globalState, updatedSlideshow) => {
+    return globalState.map(endpoint => {
+        const updatedSlideshows = endpoint.slideshows.map(slideshow => {
+            if (slideshow._id === updatedSlideshow._id) {
+                return { ...slideshow, ...updatedSlideshow };
+            }
+            return slideshow;
+        });
+        return { ...endpoint, slideshows: updatedSlideshows };
+    });
+};
 
   const handleSave = async () => {
     try {
-      await updateSlideshow({ variables: { slideshowId, slideshowName: formState.slideshowName, slides: selectedSlides } });
-      navigate('/');
+      const updatedSlideshow = await updateSlideshow({ variables: { slideshowId, slideshowName: formState.slideshowName, slides: state.SelectedSlides } });
+      const newGlobalEndpoints = updateSlideshowInEndpoints(state.Endpoints, updatedSlideshow.data.updateSlideshow);
+      dispatch({type:'SET_ENDPOINT',payload:newGlobalEndpoints})
+      
+      navigate(-1);
     } catch (error) {
       setFormState({ errorMessage: error.message });
     }
@@ -48,7 +74,7 @@ const SlideshowViewUpdate = () => {
   const handleDelete = async () => {
     try {
       await deleteSlideshow({ variables: { slideshowId } });
-      navigate('/');
+      navigate(-1);
     } catch (error) {
       setFormState({ errorMessage: error.message });
     }
@@ -66,12 +92,12 @@ const SlideshowViewUpdate = () => {
       <input
         type="text"
         id="slideshowName"
-        value={formState.slideshowName || getSlideshow.slideshowName}
+        value={getSlideshow.slideshowName || formState.slideshowName}
         onChange={handleChange}
       />
       {formState.errorMessage && <p className="error">{formState.errorMessage}</p>}
       <button className="button is-primary" onClick={handleSave}>Save Changes</button>
-      <button className="button is-danger" onClick={() => setShowModal(true)}>Delete Slideshow</button>
+      <button className="button is-secondary" onClick={() => navigate(-1)}>Go Back</button>
       <Slides onCardClick={handleCardClick} />
       {showModal && (
         <div className="modal is-active">

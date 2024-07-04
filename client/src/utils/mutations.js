@@ -69,6 +69,8 @@ mutation updateSlideshow($slideshowId: ID, $slides: [ID]!, $comments: String,$sl
     _id
     slides {
       _id
+      extname
+      filename
     }
   }
 }

@@ -96,7 +96,11 @@ const resolvers = {
     },
     updateSlideshow: async (parent, { _id, slides, comments, slideshowName }, context) => {
       if (context.user) {
-        const updatedSlideshow = await Slideshow.findByIdAndUpdate({ _id: _id }, { slides, comments, slideshowName }, { new: true });
+        const updatedSlideshow = await Slideshow.findByIdAndUpdate(
+          { _id: _id }, 
+          { slides, comments, slideshowName }, 
+          { new: true }
+        ).populate('slides');
         return updatedSlideshow;
       }
     },
