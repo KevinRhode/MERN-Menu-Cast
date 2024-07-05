@@ -100,3 +100,22 @@ query getEndpoint($getEndpointId: String!) {
 }
 `;
 
+export const GET_ENDPOINT_BY_ID = gql`
+query getEndpointById($getEndpointId: String!) {
+  getEndpointById(id: $getEndpointId) {
+    deviceId
+    _id
+    slideshows {
+      _id
+      comments
+      slides {
+        extname
+        filename
+        _id
+      }
+      slideshowName
+    }
+  }
+}
+`;
+

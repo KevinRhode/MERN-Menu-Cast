@@ -34,6 +34,7 @@ const typeDefs = `
   type Query {    
     user: User
     getEndpoint(id: String!): Endpoint
+    getEndpointById(id: String!): Endpoint
     getSlide(id: String!): Slide
     getAllslides: [Slide]
     getAllslideshow: [Slideshow]  

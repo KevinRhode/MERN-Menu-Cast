@@ -45,6 +45,12 @@ const resolvers = {
       return endpoint;
 
     },
+    getEndpointById: async (parent, { id }) => {
+
+      const endpoint = await Endpoint.findById(id).populate({ path: 'slideshows', populate: { path: 'slides' } });
+      return endpoint;
+
+    },
     getAllEndpoints: async (parent, args, context) => {
       if (context.user) {
       const endpoints = await Endpoint.find().populate({ path: 'slideshows', populate: { path: 'slides' } });
@@ -133,7 +139,7 @@ const resolvers = {
     },
     updateEndpoint: async (parent, { _id, deviceId, slideshows }, context) => {
       if (context.user) {
-        const updatedEndpoint = await Endpoint.findByIdAndUpdate({ _id }, { slideshows, deviceId }, { new: true });
+        const updatedEndpoint = await Endpoint.findByIdAndUpdate({ _id }, { slideshows, deviceId }, { new: true }).populate({ path: 'slideshows', populate: { path: 'slides' } });
         return updatedEndpoint;
       }
     },

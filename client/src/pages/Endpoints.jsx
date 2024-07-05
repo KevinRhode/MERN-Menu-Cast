@@ -56,7 +56,7 @@ function Endpoints(){
                   </div>
                 ))}
                 <button className='button is-danger' onClick={()=>promptDelete(endpoint._id)}>Delete Endpoint</button>
-                <button className='button is-secondary' onClick={() => navigate(`/endpoint/${endpoint.deviceId}`)}>Edit</button>
+                <button className='button is-secondary' onClick={() => navigate(`/endpoint/${endpoint._id}`)}>Edit</button>
               </div>
             ))
           )}
