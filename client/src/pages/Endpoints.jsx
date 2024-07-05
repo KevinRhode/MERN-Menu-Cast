@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 import { useStateContext } from '../utils/GlobalState';
 import './style.css';
@@ -8,6 +8,7 @@ import { DELETE_ENDPOINT } from '../utils/mutations';
 
 function Endpoints(){
     const { state, dispatch } = useStateContext();
+    const navigate = useNavigate();
     const [deleteEndpoint, {loading, error}] = useMutation(DELETE_ENDPOINT)
     const [showModal, setShowModal] = useState(false);
     const [endpointId, setEndpointIdSelected] = useState('');
@@ -55,7 +56,7 @@ function Endpoints(){
                   </div>
                 ))}
                 <button className='button is-danger' onClick={()=>promptDelete(endpoint._id)}>Delete Endpoint</button>
-                <button className='button is-secondary' onClick={() => console.log('')}>Edit</button>
+                <button className='button is-secondary' onClick={() => navigate(`/endpoint/${endpoint.deviceId}`)}>Edit</button>
               </div>
             ))
           )}

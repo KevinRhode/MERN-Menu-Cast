@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../utils/GlobalState";
 import { UPDATE_ENDPOINT } from "../utils/mutations";
@@ -12,12 +12,12 @@ const EditEndpoint = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useStateContext();
   const [formState, setFormState] = useState({ deviceId: '', errorMessage: '' });
-  const { loading, error, data } = useQuery(GET_ENDPOINT, { variables: { endpointId } });
+  const { loading, error, data } = useQuery(GET_ENDPOINT, { variables: { getEndpointId: endpointId } });
   const [updateEndpoint] = useMutation(UPDATE_ENDPOINT);
 
   useEffect(() => {
-    if (data && data.endpoint) {
-      setFormState({ deviceId: data.endpoint.deviceId });
+    if (data && data.getEndpoint) {
+      setFormState({ deviceId: data.getEndpoint.deviceId });
     }
   }, [data]);
 
