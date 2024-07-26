@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "startLeg": "nodemon --exec \"npx babel-node\" server.js",
     "production": "set NODE_ENV=production && node server.js",
     "watch": "nodemon",
     "seed": "node config/seeds.js"
@@ -13,14 +14,25 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.4",
+    "@babel/plugin-transform-runtime": "^7.24.7",
     "bcrypt": "^5.1.1",
     "ci": "^2.3.0",
+    "core-js": "^3.37.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "graphql": "^16.8.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.4",
     "multer": "^1.4.5-lts.1",
+    "regenerator-runtime": "^0.14.1",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/node": "^7.24.8",
+    "@babel/preset-env": "^7.25.0",
+    "@babel/preset-react": "^7.24.7",
+    "@vitejs/plugin-legacy": "^5.4.1",
+    "@vitejs/plugin-react": "^4.3.1"
   }
 }
