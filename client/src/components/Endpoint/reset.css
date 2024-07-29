@@ -1,5 +1,5 @@
 /* CSS Reset */
-html, body, div, span, applet, object, iframe,
+/* html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -18,19 +18,19 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-}
-
+} */
+/* 
 :root {
   --bulma-body-overflow-y: none
-}
+} */
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
+/* article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
-}
+} */
 
-body {
+/* body {
   line-height: 1;
 }
 
@@ -40,9 +40,9 @@ ol, ul {
 
 blockquote, q {
   quotes: none;
-}
+} */
 
-blockquote:before, blockquote:after,
+/* blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
@@ -51,10 +51,10 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
+} */
 
 /* Additional common resets */
-img {
+/* img {
   max-width: 100%;
   height: auto;
   border: 0;
@@ -67,4 +67,78 @@ a {
 
 * {
   box-sizing: border-box;
+} */
+
+
+
+
+
+/* middle */
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+:root {
+  --bulma-body-overflow-y: none
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section {
+    display: block;
+}
+
+/* Set the line-height globally */
+body {
+    line-height: 1.5;
+    font-family: sans-serif;
+}
+
+/* Remove list styles */
+ol, ul {
+    list-style: none;
+}
+
+/* Remove quotes from blockquotes and q elements */
+blockquote, q {
+    quotes: none;
+}
+
+blockquote::before, blockquote::after, q::before, q::after {
+    content: '';
+    content: none;
+}
+
+/* Set table border and collapse behavior */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Set the :root pseudo-class */
+:root {
+    --primary-color: #333;
+    --secondary-color: #777;
+    --font-size-base: 16px;
+    --font-size-large: 18px;
+    --font-size-small: 14px;
+}
+
+/* Optional: Apply global variables */
+body {
+    color: var(--primary-color);
+    font-size: var(--font-size-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--secondary-color);
 }
