@@ -29,8 +29,13 @@
     width: 200px;
     height: 200px;
     overflow: hidden;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 4px;
+    
+  }
+
+  .slideshow {
+    background-color: black;
   }
   
   .slide-image {

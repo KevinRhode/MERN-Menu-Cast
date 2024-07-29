@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { useQuery } from '@apollo/client';
 import {  GET_ENDPOINT } from '../../utils/queries';
 import { useParams } from 'react-router-dom';
-// import './reset.css'
+//import './reset.css'
 //import './endpoint.css'
 
 
@@ -17,18 +17,25 @@ const Endpoint = () => {
 
      // Create a link element
      const link = document.createElement('link');
+     const resetlink = document.createElement('link');
+
      link.rel = 'stylesheet';
      link.href = '/src/components/endpoint/endpoint.css';
      link.id = 'dynamic-stylesheet';
+
+     resetlink.rel = 'stylesheet';
+     resetlink.href = '/src/components/endpoint/reset.css';
+     resetlink.id = 'dynamic-stylesheet';
  
      // Append the link element to the head
+     document.head.appendChild(resetlink);
      document.head.appendChild(link);
      // Add the class to the html element when the component mounts
-     document.documentElement.classList.add('no-overflow-y');
+     document.documentElement.classList.add('no-body-overflow-y');
 
     // Remove the class from the html element when the component unmounts
     return () => {
-      document.documentElement.classList.remove('no-overflow-y');
+      document.documentElement.classList.remove('no-body-overflow-y');
       document.head.removeChild(link);
     };
   }, []);

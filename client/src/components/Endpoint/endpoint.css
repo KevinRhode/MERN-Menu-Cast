@@ -43,6 +43,7 @@ html.no-overflow-y {
     display: inline-flex;
     height: 100%;
     width: 100%;
+    /* background-color: black; */
   }
   
   /* Slide thumbnail */
