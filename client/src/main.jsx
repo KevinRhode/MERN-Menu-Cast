@@ -23,6 +23,7 @@ import CreateEndpoint from './pages/createEndpoint.jsx'
 import CreateSlideshow from './pages/CreateSlideShow.jsx'
 import SlideshowViewUpdate from './pages/SlideshowViewUpdate.jsx'
 import EditEndpoint from './pages/EndpointUpdate.jsx'
+import AboutPage from './pages/About.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
        
         <Routes>
           <Route path='/ss/:id' element={<ContentServer/>}/>
+          <Route path='/about' element={<AboutPage/>}/>
           <Route path='/' element={<App />}>
             <Route index element={<ProtectedRoute><DataLoader><Nav/><Dashboard /></DataLoader></ProtectedRoute>} />
             <Route path='profile' element={<ProtectedRoute><Nav/><Account/></ProtectedRoute>}/>

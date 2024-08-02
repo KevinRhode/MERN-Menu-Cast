@@ -8,11 +8,11 @@ const Nav = () => {
   return (
     <nav >
     <ul className='container' style={{ listStyleType: 'none', display: 'flex', justifyContent: 'space-around' }}>
-      <li className='field'><Link className='button is-link' to="/">Dashboard</Link></li>
-      <li className='field'><Link className='button is-link' to="/about">About</Link></li>
+      <li className='navField'><Link className='button is-link' to="/">Dashboard</Link></li>
+      <li className='navField'><Link className='button is-link' to="/about">About</Link></li>
       
       {user ? (<>
-            <li className='field'><Link className='button is-link' to="/profile">Profile</Link></li>           
+            <li className='navField'><Link className='button is-link' to="/profile">Profile</Link></li>           
           </> ) : ( <></> )}
     </ul>
   </nav>
