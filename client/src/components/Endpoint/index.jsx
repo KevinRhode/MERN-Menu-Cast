@@ -12,8 +12,18 @@ const Endpoint = () => {
   const delay = 10000;
 
   useEffect(() => {
+
+        // Function to remove the CSS link
+        const removeCssLink = () => {
+          const cssLink = document.getElementById('bulmaStyle');
+          if (cssLink) {
+            cssLink.parentNode.removeChild(cssLink);
+          }
+        };
     
-    
+        
+    // Call the function to remove the CSS link
+    removeCssLink();
 
      // Create a link element
      const link = document.createElement('link');

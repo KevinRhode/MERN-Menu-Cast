@@ -4,12 +4,13 @@ import { useMutation } from '@apollo/client';
 import { ADD_ENDPOINT } from '../utils/mutations';
 import './createEndpoint.css'
 import Endpoints from './Endpoints';
+import { GET_ALL_ENDPOINTS } from '../utils/queries';
 
 function CreateEndpoint(){
 
   const { state, dispatch } = useStateContext();
   const [formState, setFormState] = useState({errorMessage:''});
-  const [addEndpoint, {error}] = useMutation(ADD_ENDPOINT);
+  const [addEndpoint, {error}] = useMutation(ADD_ENDPOINT,{refetchQueries:[{query: GET_ALL_ENDPOINTS}]});
 
   const handleChange = (event) => {    
     const { value } = event.target;
